@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './chatList.css';
+import AddUser from './addUser/AddUser';
 
 const ChatList = () => {
-  const [minus, setMinus] = useState(false)
+  const [addUser, setAddUser] = useState(false);
 
   return (
     <div className='chat-list-container'>
@@ -12,10 +13,10 @@ const ChatList = () => {
           <input type="text" placeholder='Search' />
         </div>
         <img
-          src={!minus ? "./plus.png" : "./minus.png"} alt=""
+          src={addUser ? "./minus.png" : "./plus.png"} alt=""
           className='add'
-          // onClick={() => setMinus(!minus)} 
-          onClick={() => setMinus((prev) => !prev)}
+          // onClick={() => setAddUser(!addUser)} 
+          onClick={() => setAddUser((prev) => !prev)}
         />
       </div>
 
@@ -42,6 +43,8 @@ const ChatList = () => {
           <p>Hello, how are you?</p>
         </div>
       </div>
+
+      {addUser && <AddUser />}
     </div>
   );
 };
