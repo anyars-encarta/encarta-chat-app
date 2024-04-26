@@ -1,25 +1,31 @@
 {
-  "hash": "6d80f30b",
+  "hash": "c02ff99b",
   "configHash": "355e40a6",
-  "lockfileHash": "3591ca11",
-  "browserHash": "ab69d800",
+  "lockfileHash": "bb7df8b9",
+  "browserHash": "b049cebf",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "f4ced321",
+      "fileHash": "bf7f735d",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "2ec3e12d",
+      "fileHash": "b7799ed4",
       "needsInterop": true
+    },
+    "emoji-picker-react": {
+      "src": "../../node_modules/emoji-picker-react/dist/emoji-picker-react.esm.js",
+      "file": "emoji-picker-react.js",
+      "fileHash": "6876782a",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-C7MUITE7": {
-      "file": "chunk-C7MUITE7.js"
+    "chunk-3AU5NLGS": {
+      "file": "chunk-3AU5NLGS.js"
     }
   }
 }
