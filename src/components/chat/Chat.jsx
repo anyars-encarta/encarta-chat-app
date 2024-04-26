@@ -28,7 +28,72 @@ const Chat = () => {
         </div>
       </div>
 
-      <div className="center"></div>
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam, quam laborum accusantium modi sapiente magni tempore
+              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
+              mollitia iste repellat quis eligendi eveniet veniam!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+
+        <div className="message own">
+          <div className="texts">
+            <img src="./masterDP.jpg" alt="" />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam, quam laborum accusantium modi sapiente magni tempore
+              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
+              mollitia iste repellat quis eligendi eveniet veniam!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam, quam laborum accusantium modi sapiente magni tempore
+              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
+              mollitia iste repellat quis eligendi eveniet veniam!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam, quam laborum accusantium modi sapiente magni tempore
+              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
+              mollitia iste repellat quis eligendi eveniet veniam!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <img src="./masterDP.jpg" alt="" />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam, quam laborum accusantium modi sapiente magni tempore
+              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
+              mollitia iste repellat quis eligendi eveniet veniam!
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </div>
 
       <div className="bottom">
         <div className="icons">
@@ -40,10 +105,13 @@ const Chat = () => {
           type="text"
           placeholder='type a message...'
           value={text}
-          onChange={(e) => setText(e.target.value)} />
+          onChange={(e) => setText(e.target.value)}
+        />
         <div className="emoji">
           <img src="./emoji.png" alt="" onClick={() => setShowEmojiPicker((prev) => !prev)} />
-          <EmojiPicker open={showEmojiPicker} onEmojiClick={handleEmoji} />
+          <div className="picker">
+            <EmojiPicker open={showEmojiPicker} onEmojiClick={handleEmoji} />
+          </div>
         </div>
         <button className='sendButton'>Send</button>
       </div>
