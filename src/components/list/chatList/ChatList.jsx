@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './chatList.css';
+import AddUser from './addUser/AddUser';
 
 const ChatList = () => {
-  const [minus, setMinus] = useState(false)
+  const [minus, setMinus] = useState(false);
 
   return (
     <div className='chat-list-container'>
@@ -42,6 +43,8 @@ const ChatList = () => {
           <p>Hello, how are you?</p>
         </div>
       </div>
+
+      {minus && <AddUser />}
     </div>
   );
 };
