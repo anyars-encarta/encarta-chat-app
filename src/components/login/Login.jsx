@@ -3,7 +3,7 @@ import './login.css';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../lib/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import upload from '../../lib/upload';
 
 const Login = () => {
@@ -30,6 +30,27 @@ const Login = () => {
 
         const { username, email, password } = Object.fromEntries(formData);
 
+        // VALIDATE INPUTS
+        if (!username || !email || !password) {
+            setLoading(false);
+            return toast.warn("Please enter inputs!");
+        }
+        
+
+        if(!avatar.file) {
+            setLoading(false);
+            return toast.warn("Please upload an avatar!");
+        }
+
+        // VALIDATE UNIQUE USERNAME
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("username", "==", username));
+        const querySnapShot = await getDocs(q);
+        if(!querySnapShot.empty) {
+            setLoading(false);
+            return toast.warn("Select another username!");
+        }
+
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -52,7 +73,7 @@ const Login = () => {
             console.log(e);
             toast.error(e.message);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
