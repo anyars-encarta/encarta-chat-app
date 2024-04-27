@@ -9,7 +9,6 @@ import { auth } from "./lib/firebase";
 import { useUserStore } from "./lib/userStore";
 
 const App = () => {
-  // const user = false
   const {currentUser, isLoading, fetchUserInfo} = useUserStore();
 
   useEffect(() => {
