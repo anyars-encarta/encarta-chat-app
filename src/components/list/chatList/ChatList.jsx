@@ -56,7 +56,12 @@ const ChatList = () => {
       </div>
 
       {chats.map((chat) => (
-        <div className="item" key={chat.chatId} onClick={() => handleSelect(chat)}>
+        <div 
+        className="item" 
+        key={chat.chatId} 
+        onClick={() => handleSelect(chat)}
+        style={{ backgroundColor: chat?.isSeen ? 'transparent' : '#5183fe' }}
+        >
           <img src={chat.user.avatar || "./avatar.png"} alt="" />
           <div className="texts">
             <span>{chat.user.username}</span>
