@@ -27,8 +27,6 @@ const Chat = () => {
       unSub();
     };
   }, [chatId])
-
-  console.log('This is the chat ', chat)
   
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
