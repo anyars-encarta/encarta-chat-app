@@ -64,9 +64,9 @@ const Chat = () => {
 
           await updateDoc(userChatsRef, {
             chats: userChatsData.chats,
-          })
+          });
         }
-      })
+      });
     } catch (e) {
       console.log(e)
     }
