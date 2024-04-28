@@ -21,7 +21,7 @@ const Chat = () => {
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
       setChat(res.data())
-    })
+    });
 
     return () => {
       unSub();
@@ -51,19 +51,6 @@ const Chat = () => {
       </div>
 
       <div className="center">
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ullam, quam laborum accusantium modi sapiente magni tempore
-              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
-              mollitia iste repellat quis eligendi eveniet veniam!
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
         <div className="message own">
           <div className="texts">
             <img src="./masterDP.jpg" alt="" />
@@ -76,46 +63,6 @@ const Chat = () => {
             <span>1 min ago</span>
           </div>
         </div>
-
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ullam, quam laborum accusantium modi sapiente magni tempore
-              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
-              mollitia iste repellat quis eligendi eveniet veniam!
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ullam, quam laborum accusantium modi sapiente magni tempore
-              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
-              mollitia iste repellat quis eligendi eveniet veniam!
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <img src="./masterDP.jpg" alt="" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ullam, quam laborum accusantium modi sapiente magni tempore
-              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
-              mollitia iste repellat quis eligendi eveniet veniam!
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
         <div ref={endRef}></div>
       </div>
 
