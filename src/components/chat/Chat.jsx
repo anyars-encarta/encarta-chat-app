@@ -28,6 +28,8 @@ const Chat = () => {
     };
   }, [chatId])
 
+  console.log('This is the chat ', chat)
+  
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setShowEmojiPicker(false);
@@ -51,18 +53,18 @@ const Chat = () => {
       </div>
 
       <div className="center">
-        <div className="message own">
-          <div className="texts">
-            <img src="./masterDP.jpg" alt="" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ullam, quam laborum accusantium modi sapiente magni tempore
-              voluptatibus ad culpa? Debitis, atque tenetur nesciunt
-              mollitia iste repellat quis eligendi eveniet veniam!
-            </p>
-            <span>1 min ago</span>
+        {chat?.messages?.map(message => (
+          <div className="message own" key={message.createdAt}>
+            <div className="texts">
+              {message.img && <img src={message.img} alt="" />}
+              <p>
+                {message.text}
+              </p>
+              {/* <span>{message.createdAt}</span> */}
+            </div>
           </div>
-        </div>
+        ))
+        }
         <div ref={endRef}></div>
       </div>
 
