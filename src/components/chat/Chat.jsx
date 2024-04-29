@@ -126,7 +126,7 @@ const Chat = () => {
               <p>
                 {message.text}
               </p>
-              <span>{format(message.createdAt)}</span>
+              <span>{format(message.createdAt.toDate())}</span>
             </div>
           </div>
         ))}
