@@ -5,11 +5,17 @@ import { arrayUnion, doc, getDoc, onSnapshot, updateDoc } from 'firebase/firesto
 import { db } from '../../lib/firebase';
 import { useChatStore } from '../../lib/chatStore';
 import { useUserStore } from '../../lib/userStore';
+import { format } from 'timeago.js';
+import upload from '../../lib/upload';
 
 const Chat = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [chat, setChat] = useState([]);
   const [text, setText] = useState('');
+  const [img, setImg] = useState({
+    file: null,
+    url: "",
+  });
 
   const { chatId, user } = useChatStore();
   const { currentUser } = useUserStore();
@@ -17,12 +23,12 @@ const Chat = () => {
   const endRef = useRef(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, []);
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chat.messages]);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
-      setChat(res.data())
+      setChat(res.data());
     });
 
     return () => {
@@ -35,15 +41,31 @@ const Chat = () => {
     setShowEmojiPicker(false);
   }
 
+  const handleImg = (e) => {
+    if (e.target.files[0]) {
+      setImg({
+        file: e.target.files[0],
+        url: URL.createObjectURL(e.target.files[0])
+      });
+    }
+  };
+
   const handleSend = async () => {
     if (text === "") return;
 
+    let imgUrl = null;
+
     try {
+      if (img.file) {
+        imgUrl = await upload(img.file);
+      }
+
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
           text,
-          createdAt: new Date()
+          createdAt: new Date(),
+          ...(imgUrl && { img: imgUrl }),
         }),
       });
 
@@ -70,6 +92,13 @@ const Chat = () => {
     } catch (e) {
       console.log(e)
     }
+
+    setImg({
+      file: null,
+      url: ""
+    });
+
+    setText("");
   };
 
   return (
@@ -97,17 +126,26 @@ const Chat = () => {
               <p>
                 {message.text}
               </p>
-              {/* <span>{message.createdAt}</span> */}
+              <span>{format(message.createdAt)}</span>
             </div>
           </div>
-        ))
-        }
+        ))}
+        {img.url && (
+          <div className="message own">
+            <div className="texts">
+              <img src={img.url} alt="" />
+            </div>
+          </div>
+        )}
         <div ref={endRef}></div>
       </div>
 
       <div className="bottom">
         <div className="icons">
-          <img src="./img.png" alt="" />
+          <label htmlFor="file">
+            <img src="./img.png" alt="" />
+          </label>
+          <input type="file" id='file' style={{ display: "none" }} onChange={handleImg} />
           <img src="./camera.png" alt="" />
           <img src="./mic.png" alt="" />
         </div>
