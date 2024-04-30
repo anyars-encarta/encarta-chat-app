@@ -39,7 +39,7 @@
 <!-- INTRO -->
 # 📖 Encarta Chat App<a name="about-project"></a>
 
-> Encarta Chat App is a full-stack real-time app built with React and Google firebase, that allows autheticated users to share messages and media between them in real-time.
+> Encarta Chat App is a desktop full-stack real-time app built with React and Google firebase, that allows autheticated users to share messages and media between them in real-time.
 
 ## 🛠 Built With <a name="built-with"></a>
 1. React
